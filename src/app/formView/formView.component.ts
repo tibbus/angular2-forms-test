@@ -37,10 +37,17 @@ export class FormViewComponent {
 
     clickSubmitMovie(e, movieForm) {
         e.preventDefault();
-
+        let isValid = movieForm.valid;
         this.submited = true;
 
-        if (movieForm.valid && this.movie.casts.length !== 0) {
+        // this should not be required if Angular2 validation works properly
+        this.movie.casts.forEach(cast => {
+            if (!cast.actor || !cast.salary) {
+                isValid = false 
+            }
+        });
+
+        if (isValid) {
             this.movieService.createMovie(this.movie);
 
             // reset data :

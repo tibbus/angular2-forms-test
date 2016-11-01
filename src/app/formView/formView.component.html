@@ -1,4 +1,4 @@
-<form #movieForm="ngForm" (ngSubmit)="clickSubmitMovie($event, movieForm)">
+<form #movieForm="ngForm" (ngSubmit)="clickSubmitMovie($event, movieForm)" novalidate>
 	<div class="form-group">
 		<label>Title</label>
 		<input type="text" class="form-control" [(ngModel)]="movie.title" name="title" required>
