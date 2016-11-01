@@ -1,0 +1,20 @@
+<h1>Movies</h1>
+
+<div class="sort">
+	<select (change)="changeSort($event)">
+        <option value="asc">Total cost (low to high)</option>
+        <option value="desc">Total cost (high to low)</option>
+    </select>
+</div>
+
+<div class="movie" *ngFor="let movie of movies">
+	<h3>{{movie.title}}</h3>
+
+	<div *ngFor="let cast of movie.casts">
+		<span class="actor">{{cast.actor}}</span>
+		<span class="salary">{{cast.salary}} $</span>
+	</div>
+
+	<span class="total total-text">Total</span>
+	<span class="total total-money">{{movie.total}} $</span>
+</div>

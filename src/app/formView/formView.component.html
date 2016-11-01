@@ -1,0 +1,61 @@
+<form #movieForm="ngForm" (ngSubmit)="clickSubmitMovie($event, movieForm)">
+	<div class="form-group">
+		<label>Title</label>
+		<input type="text" class="form-control" [(ngModel)]="movie.title" name="title" required>
+		<div [hidden]="movie.title || !submited" class="alert alert-danger">
+			Title is required !
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="left category">
+			<label>Category</label>
+			<select class="form-control" required [(ngModel)]="movie.category" name="category">
+			<option *ngFor="let category of categories | objectToArray" [value]="category">{{category}}</option>
+		</select>
+			<div [hidden]="movie.category || !submited" class="alert alert-danger">
+				Category is required !
+			</div>
+		</div>
+
+		<div class="right subcategory">
+			<label>Subcategory</label>
+			<select class="form-control"[(ngModel)]="movie.subcategory" name="subcategory">
+			<option *ngFor="let subcategory of categories[movie.category]" [value]="subcategory">{{subcategory}}</option>
+		</select>
+		</div>
+	</div>
+
+	<div class="form-group cast">
+		<div [hidden]="movie.casts.length || !submited" class="alert alert-danger">
+			At least 1 actor is required !
+		</div>
+		<div *ngFor="let cast of movie.casts; let i = index">
+			<div class="left actor">
+				<label>Actor</label>
+				<input type="text" class="form-control" name="actor" (keyup)="changeSetActor($event, i)" value="{{cast.actor}}" required>
+				<div [hidden]="cast.actor || !submited" class="alert alert-danger">
+					Actor is required !
+				</div>
+			</div>
+
+			<div class="right salary">
+				<label>Salary ($)</label>
+				<input type="text" class="form-control" name="salary" (keyup)="changeSetSalary($event, i)" value="{{cast.salary}}" required>
+				<div [hidden]="cast.salary || !submited" class="alert alert-danger">
+					Salary is required !
+				</div>
+			</div>
+
+			<div class="btn btn-default minus" (click)="clickRemoveCast(i)">
+				<span class="glyphicon glyphicon-minus"></span>
+			</div>
+		</div>
+
+		<div class="btn btn-default plus" (click)="clickAddCast()">
+			<span class="glyphicon glyphicon-plus"></span>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-default create">Create</button>
+</form>
