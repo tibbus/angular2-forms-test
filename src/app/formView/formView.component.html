@@ -40,9 +40,6 @@
 				<div [hidden]="cast.actor || !submited" class="alert alert-danger">
 					Actor is required !
 				</div>
-				<div [hidden]="!cast.actor" class="alert alert-danger">
-					Actor is name is too long !
-				</div>
 			</div>
 
 			<div class="right salary">
@@ -50,9 +47,6 @@
 				<input type="text" class="form-control" name="salary" (keyup)="changeSetSalary($event, i)" value="{{cast.salary}}" required>
 				<div [hidden]="cast.salary || !submited" class="alert alert-danger">
 					Salary is required !
-				</div>
-				<div [hidden]="!validator.salary" class="alert alert-danger">
-					Salary is too high !
 				</div>
 			</div>
 
