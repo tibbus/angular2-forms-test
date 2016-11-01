@@ -7,9 +7,4 @@
     styleUrls: ['app.component.css']
 })
 
-export class AppComponent {
-
-    ngOnInit() {
-        console.log('it works');
-    }
-}
+export class AppComponent {}
