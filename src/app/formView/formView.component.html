@@ -5,6 +5,9 @@
 		<div [hidden]="movie.title || !submited" class="alert alert-danger">
 			Title is required !
 		</div>
+		<div [hidden]="!validator.title" class="alert alert-danger">
+			Title is too long !
+		</div>
 	</div>
 
 	<div class="form-group">
@@ -20,7 +23,7 @@
 
 		<div class="right subcategory">
 			<label>Subcategory</label>
-			<select class="form-control"[(ngModel)]="movie.subcategory" name="subcategory">
+			<select class="form-control" [(ngModel)]="movie.subcategory" name="subcategory">
 			<option *ngFor="let subcategory of categories[movie.category]" [value]="subcategory">{{subcategory}}</option>
 		</select>
 		</div>
@@ -37,6 +40,9 @@
 				<div [hidden]="cast.actor || !submited" class="alert alert-danger">
 					Actor is required !
 				</div>
+				<div [hidden]="!cast.actor" class="alert alert-danger">
+					Actor is name is too long !
+				</div>
 			</div>
 
 			<div class="right salary">
@@ -44,6 +50,9 @@
 				<input type="text" class="form-control" name="salary" (keyup)="changeSetSalary($event, i)" value="{{cast.salary}}" required>
 				<div [hidden]="cast.salary || !submited" class="alert alert-danger">
 					Salary is required !
+				</div>
+				<div [hidden]="!validator.salary" class="alert alert-danger">
+					Salary is too high !
 				</div>
 			</div>
 

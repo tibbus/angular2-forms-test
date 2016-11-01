@@ -14,6 +14,7 @@ export class FormViewComponent {
     public movie: any = {
         casts: [{}]
     };
+    public validator: any = {};
     private id: number = 0;
     public submited: boolean = false;
 
@@ -39,12 +40,17 @@ export class FormViewComponent {
         e.preventDefault();
         let isValid = movieForm.valid;
         this.submited = true;
+        this.validator = {};
+
+        if (this.movie.title && this.movie.title.length > 30) {
+            this.validator.title = true;
+        }
 
         // this should not be required if Angular2 validation works properly
         this.movie.casts.forEach(cast => {
             if (!cast.actor || !cast.salary) {
-                isValid = false 
-            }
+                isValid = false; 
+            } 
         });
 
         if (isValid) {
