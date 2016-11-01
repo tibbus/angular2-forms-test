@@ -32,6 +32,6 @@ export class ListViewComponent {
         }
 
         // refresh movies
-        this.setMovies();
+        this.movieService.updateMovies();
     }
 }

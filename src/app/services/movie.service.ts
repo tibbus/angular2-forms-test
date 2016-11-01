@@ -12,11 +12,15 @@ export class MovieService {
 
         this.mapTotal();
 
-        this.movies$.next(this.movies);
+        this.updateMovies();
     }
 
     public getMovies() {
         return this.movies$;
+    }
+
+    public updateMovies() {
+        this.movies$.next(this.movies);
     }
 
     public getCategories() {
@@ -39,7 +43,7 @@ export class MovieService {
     public sortMoviesAsc() {
         this.movies = this.movies.map(movie => {
             movie.casts.sort((a, b) => {
-                return a.salary > b.salary;
+                return parseFloat(a.salary) > parseFloat(b.salary);
             });
 
             return movie;
@@ -49,7 +53,7 @@ export class MovieService {
     public sortMoviesDesc() {
         this.movies = this.movies.map(movie => {
             movie.casts.sort((a, b) => {
-                return a.salary < b.salary;
+                return parseFloat(a.salary) < parseFloat(b.salary);
             });
 
             return movie;

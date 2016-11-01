@@ -49,8 +49,24 @@ export class FormViewComponent {
         // this should not be required if Angular2 validation works properly
         this.movie.casts.forEach(cast => {
             if (!cast.actor || !cast.salary) {
-                isValid = false; 
-            } 
+                isValid = false;
+            }
+
+            if (cast.actor && cast.actor.length > 30) {
+                isValid = false;
+            }
+
+            if (cast.salary > 1000000000) {
+                isValid = false;
+            }
+
+            if (cast.salary > 1000000000) {
+                isValid = false;
+            }
+
+            if (!this.isNumber(cast.salary)) {
+                isValid = false;
+            }
         });
 
         if (isValid) {
@@ -71,5 +87,9 @@ export class FormViewComponent {
 
     changeSetSalary($event, i) {
         this.movie.casts[i].salary = $event.target.value;
+    }
+
+    isNumber(value) {
+        return !isNaN(parseFloat(value)) && isFinite(value);
     }
 }
